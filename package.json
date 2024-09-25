@@ -1,13 +1,25 @@
 {
-  "name": "@lnx-tech/rollup-plugin-responsive-app",
+  "name": "rollup-plugin-responsive-app",
   "version": "1.0.0-beta.1",
   "description": "A Rollup plugin for handling app responsiveness automatically",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["rollup", "plugin", "css", "vite"],
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "plugin",
+    "css",
+    "vite",
+    "vite-plugin",
+    "responsive",
+    "responsiveness",
+    "resolution",
+    "mobile"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lnx-tech/rollup-plugin-responsive-app"
@@ -15,6 +27,16 @@
   "author": "Arthur Borba <arthur@lnxtech.com.br>",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^3.0.0"
-  }
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@types/node": "^22.5.5",
+    "rollup": "^3.29.5",
+    "tslib": "^2.7.0",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "magic-string": "^0.30.11"
+  },
+  "files": [
+    "dist"
+  ]
 }
