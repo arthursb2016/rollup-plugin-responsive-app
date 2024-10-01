@@ -3,7 +3,7 @@ import { Options, HandleMobileOptions, TransformPixelsOptions } from './types'
 export const optionDefaults: Options = {
   appEntry: undefined,
   handleMobile: true,
-  transformPixels: false
+  transformPixels: true
 }
 
 export const handleMobileDefaults: HandleMobileOptions = {

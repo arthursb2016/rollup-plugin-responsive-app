@@ -1,21 +1,18 @@
 {
   "name": "rollup-plugin-responsive-app",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.9",
   "description": "A Rollup plugin for handling app responsiveness automatically",
-  "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "exports": {
-    ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.cjs.js"
-    }
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
