@@ -72,25 +72,10 @@ function handleMobile(code: string, options: HandleMobileOptions) {
     if (options.ignoreSelectors.some(i => selector.includes(i))) {
       continue
     }
-
-    let hasDisplayFlex = false
-    let hasFlexDirectionColumn = false
-
-    let propMatch
-
-    while ((propMatch = propRegex.exec(properties)) !== null) {
-      const key = propMatch[1].trim()
-      const value = propMatch[2].trim()
-
-      if (key === 'display' && value === 'flex') {
-        hasDisplayFlex = true
-      }
-      if (key === 'flex-direction' && value === 'column') {
-        hasFlexDirectionColumn = true
-      }
-    }
-    if (hasDisplayFlex && !hasFlexDirectionColumn) {
-      selectors.add(selector)
+    const propertiesString = properties.replace(/ /g, '')
+    const requiresRule = propertiesString.includes('display:flex') && !propertiesString.includes('flex-direction:column')
+    if (requiresRule) {
+      selectors.add(selector);
     }
   }
 
