@@ -2243,9 +2243,9 @@ function transformPixels(code, options) {
         const pxProperties = [];
         const properties = propValue.split(';');
         properties.forEach((property) => {
-            const arr = property.split(';');
-            const key = arr[0];
-            const value = arr[1];
+            const arr = property.split(':');
+            const key = arr[0].trim();
+            const value = (arr[1] || '').trim();
             if (value && value.includes('px') && !options.ignoreAttributes.includes(key)) {
                 pxProperties.push({ key, value });
             }
@@ -2260,7 +2260,7 @@ function transformPixels(code, options) {
             transformationDefinitions += `${key}:not(.${ignoreResponsiveAppClass}){`;
             properties.forEach((prop, index) => {
                 const isLast = index === properties.length - 1;
-                transformationDefinitions += `${prop.key}:${getPropertyRemValue(prop.value)}${isLast ? '' : ''}`;
+                transformationDefinitions += `${prop.key}:${getPropertyRemValue(prop.value)}${isLast ? '' : ';'}`;
             });
             transformationDefinitions += '}';
         });
