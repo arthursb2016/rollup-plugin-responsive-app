@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-responsive-app",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.1-beta.1",
   "description": "A Rollup plugin for handling app responsiveness automatically",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,6 @@
   "keywords": [
     "rollup",
     "rollup-plugin",
-    "plugin",
     "css",
     "vite",
     "vite-plugin",

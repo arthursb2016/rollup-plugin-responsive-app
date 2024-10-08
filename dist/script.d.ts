@@ -1,2 +1,2 @@
-declare const _default: () => string;
+declare const _default: (mobileQueries: string | null) => string;
 export default _default;

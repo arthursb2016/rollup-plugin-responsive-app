@@ -1,6 +1,7 @@
 import queries from './queries'
+import { Options } from './types'
 
-export default () => {
+export default (mobileQueries: string | null) => {
   return `
     if (typeof window !== 'undefined') {
       const baseFontSize = 16
@@ -20,14 +21,24 @@ export default () => {
       const addVirtualRemQueries = function() {
         const style = document.createElement('style')
         style.setAttribute('type', 'text/css')
-        style.setAttribute('data-magic-responsive', 'true')
+        style.setAttribute('data-responsive-app', 'true')
         style.textContent = \"${queries.replace(/\n/g, '')}\"
+        document.head.appendChild(style)
+      }
+
+      const addMobileCentralization = function() {
+        if ('${mobileQueries}' === 'null') return
+        const style = document.createElement('style')
+        style.setAttribute('type', 'text/css')
+        style.setAttribute('data-responsive-app-mobile', 'true')
+        style.textContent = \"${mobileQueries!.replace(/\n/g, '')}\"
         document.head.appendChild(style)
       }
 
       const initResponsive = function() {
         window.addEventListener('resize', updateHtmlFontSize)
         addVirtualRemQueries()
+        addMobileCentralization()
         updateHtmlFontSize()
       }
 

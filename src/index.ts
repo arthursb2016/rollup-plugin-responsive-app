@@ -34,7 +34,7 @@ export default function(data?: Options): Plugin {
 
         if (!hasAddedScript && (isOptionEntryPoint || isDefaultEntryPoint)) {
           hasAddedScript = true
-          return handleJs(code, id)
+          return handleJs(options, code, id)
         }
 
         return null

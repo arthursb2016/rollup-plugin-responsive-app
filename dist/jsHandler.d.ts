@@ -1,4 +1,5 @@
-declare const _default: (code: string, id: string) => {
+import { Options } from './types';
+declare const _default: (options: Options, code: string, id: string) => {
     code: string;
     map: import("magic-string").SourceMap;
 };

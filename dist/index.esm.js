@@ -2273,20 +2273,9 @@ function handleMobile(code, options) {
         if (options.ignoreSelectors.some(i => selector.includes(i))) {
             continue;
         }
-        let hasDisplayFlex = false;
-        let hasFlexDirectionColumn = false;
-        let propMatch;
-        while ((propMatch = propRegex.exec(properties)) !== null) {
-            const key = propMatch[1].trim();
-            const value = propMatch[2].trim();
-            if (key === 'display' && value === 'flex') {
-                hasDisplayFlex = true;
-            }
-            if (key === 'flex-direction' && value === 'column') {
-                hasFlexDirectionColumn = true;
-            }
-        }
-        if (hasDisplayFlex && !hasFlexDirectionColumn) {
+        const propertiesString = properties.replace(/ /g, '');
+        const requiresRule = propertiesString.includes('display:flex') && !propertiesString.includes('flex-direction:column');
+        if (requiresRule) {
             selectors.add(selector);
         }
     }
@@ -2428,89 +2417,64 @@ var queries = `
     --v-rem: 18;
  }
 }
-@media (orientation: landscape) and (max-width: 1360px), (orientation: landscape) and (max-height: 765px) {
+@media (orientation: landscape) and (max-width: 1280px), (orientation: landscape) and (max-height: 720px) {
   :root {
     --v-rem: 17;
  }
 }
-@media (orientation: landscape) and (max-width: 1280px), (orientation: landscape) and (max-height: 720px) {
+@media (orientation: landscape) and (max-width: 1200px), (orientation: landscape) and (max-height: 675px) {
   :root {
     --v-rem: 16;
  }
 }
-@media (orientation: landscape) and (max-width: 1200px), (orientation: landscape) and (max-height: 675px) {
+@media (orientation: landscape) and (max-width: 1120px), (orientation: landscape) and (max-height: 630px) {
   :root {
     --v-rem: 15;
  }
 }
-@media (orientation: landscape) and (max-width: 1120px), (orientation: landscape) and (max-height: 630px) {
+@media (orientation: landscape) and (max-width: 960px), (orientation: landscape) and (max-height: 540px) {
   :root {
     --v-rem: 14;
  }
 }
-@media (orientation: landscape) and (max-width: 1040px), (orientation: landscape) and (max-height: 585px) {
+@media (orientation: landscape) and (max-width: 880px), (orientation: landscape) and (max-height: 495px) {
   :root {
     --v-rem: 13;
  }
 }
-@media (orientation: landscape) and (max-width: 960px), (orientation: landscape) and (max-height: 540px) {
+@media (orientation: landscape) and (max-width: 800px), (orientation: landscape) and (max-height: 450px) {
   :root {
     --v-rem: 12;
  }
 }
-@media (orientation: landscape) and (max-width: 880px), (orientation: landscape) and (max-height: 495px) {
+@media (orientation: landscape) and (max-width: 640px), (orientation: landscape) and (max-height: 360px) {
   :root {
     --v-rem: 11;
  }
 }
-@media (orientation: landscape) and (max-width: 800px), (orientation: landscape) and (max-height: 450px) {
+@media (orientation: landscape) and (max-width: 560px), (orientation: landscape) and (max-height: 315px) {
   :root {
     --v-rem: 10;
  }
 }
-@media (orientation: landscape) and (max-width: 720px), (orientation: landscape) and (max-height: 405px) {
+@media (orientation: landscape) and (max-width: 480px), (orientation: landscape) and (max-height: 270px) {
   :root {
     --v-rem: 9;
  }
 }
-@media (orientation: landscape) and (max-width: 640px), (orientation: landscape) and (max-height: 360px) {
+@media (orientation: landscape) and (max-width: 320px), (orientation: landscape) and (max-height: 180px) {
   :root {
     --v-rem: 8;
  }
 }
-@media (orientation: landscape) and (max-width: 560px), (orientation: landscape) and (max-height: 315px) {
+@media (orientation: landscape) and (max-width: 240px), (orientation: landscape) and (max-height: 135px) {
   :root {
     --v-rem: 7;
  }
 }
-@media (orientation: landscape) and (max-width: 480px), (orientation: landscape) and (max-height: 270px) {
-  :root {
-    --v-rem: 6;
- }
-}
-@media (orientation: landscape) and (max-width: 400px), (orientation: landscape) and (max-height: 225px) {
-  :root {
-    --v-rem: 5;
- }
-}
-@media (orientation: landscape) and (max-width: 320px), (orientation: landscape) and (max-height: 180px) {
-  :root {
-    --v-rem: 4;
- }
-}
-@media (orientation: landscape) and (max-width: 240px), (orientation: landscape) and (max-height: 135px) {
-  :root {
-    --v-rem: 3;
- }
-}
 @media (orientation: landscape) and (max-width: 160px), (orientation: landscape) and (max-height: 90px) {
   :root {
-    --v-rem: 2;
- }
-}
-@media (orientation: landscape) and (max-width: 80px), (orientation: landscape) and (max-height: 45px) {
-  :root {
-    --v-rem: 1;
+    --v-rem: 6;
  }
 }
 @media (orientation: portrait) and (max-width: 1395px), (orientation: portrait) and (max-height: 2480px) {
@@ -2583,94 +2547,69 @@ var queries = `
     --v-rem: 18;
  }
 }
-@media (orientation: portrait) and (max-width: 765px), (orientation: portrait) and (max-height: 1360px) {
+@media (orientation: portrait) and (max-width: 720px), (orientation: portrait) and (max-height: 1280px) {
   :root {
     --v-rem: 17;
  }
 }
-@media (orientation: portrait) and (max-width: 720px), (orientation: portrait) and (max-height: 1280px) {
+@media (orientation: portrait) and (max-width: 675px), (orientation: portrait) and (max-height: 1200px) {
   :root {
     --v-rem: 16;
  }
 }
-@media (orientation: portrait) and (max-width: 675px), (orientation: portrait) and (max-height: 1200px) {
+@media (orientation: portrait) and (max-width: 630px), (orientation: portrait) and (max-height: 1120px) {
   :root {
     --v-rem: 15;
  }
 }
-@media (orientation: portrait) and (max-width: 630px), (orientation: portrait) and (max-height: 1120px) {
+@media (orientation: portrait) and (max-width: 540px), (orientation: portrait) and (max-height: 960px) {
   :root {
     --v-rem: 14;
  }
 }
-@media (orientation: portrait) and (max-width: 585px), (orientation: portrait) and (max-height: 1040px) {
+@media (orientation: portrait) and (max-width: 495px), (orientation: portrait) and (max-height: 880px) {
   :root {
     --v-rem: 13;
  }
 }
-@media (orientation: portrait) and (max-width: 540px), (orientation: portrait) and (max-height: 960px) {
+@media (orientation: portrait) and (max-width: 450px), (orientation: portrait) and (max-height: 800px) {
   :root {
     --v-rem: 12;
  }
 }
-@media (orientation: portrait) and (max-width: 495px), (orientation: portrait) and (max-height: 880px) {
+@media (orientation: portrait) and (max-width: 360px), (orientation: portrait) and (max-height: 640px) {
   :root {
     --v-rem: 11;
  }
 }
-@media (orientation: portrait) and (max-width: 450px), (orientation: portrait) and (max-height: 800px) {
+@media (orientation: portrait) and (max-width: 315px), (orientation: portrait) and (max-height: 560px) {
   :root {
     --v-rem: 10;
  }
 }
-@media (orientation: portrait) and (max-width: 405px), (orientation: portrait) and (max-height: 720px) {
+@media (orientation: portrait) and (max-width: 270px), (orientation: portrait) and (max-height: 480px) {
   :root {
     --v-rem: 9;
  }
 }
-@media (orientation: portrait) and (max-width: 360px), (orientation: portrait) and (max-height: 640px) {
+@media (orientation: portrait) and (max-width: 180px), (orientation: portrait) and (max-height: 320px) {
   :root {
     --v-rem: 8;
  }
 }
-@media (orientation: portrait) and (max-width: 315px), (orientation: portrait) and (max-height: 560px) {
+@media (orientation: portrait) and (max-width: 135px), (orientation: portrait) and (max-height: 240px) {
   :root {
     --v-rem: 7;
  }
 }
-@media (orientation: portrait) and (max-width: 270px), (orientation: portrait) and (max-height: 480px) {
+@media (orientation: portrait) and (max-width: 90px), (orientation: portrait) and (max-height: 160px) {
   :root {
     --v-rem: 6;
  }
 }
-@media (orientation: portrait) and (max-width: 225px), (orientation: portrait) and (max-height: 400px) {
-  :root {
-    --v-rem: 5;
- }
-}
-@media (orientation: portrait) and (max-width: 180px), (orientation: portrait) and (max-height: 320px) {
-  :root {
-    --v-rem: 4;
- }
-}
-@media (orientation: portrait) and (max-width: 135px), (orientation: portrait) and (max-height: 240px) {
-  :root {
-    --v-rem: 3;
- }
-}
-@media (orientation: portrait) and (max-width: 90px), (orientation: portrait) and (max-height: 160px) {
-  :root {
-    --v-rem: 2;
- }
-}
-@media (orientation: portrait) and (max-width: 45px), (orientation: portrait) and (max-height: 80px) {
-  :root {
-    --v-rem: 1;
- }
-}
 `;
 
-var getResponsiveScript = () => {
+var getResponsiveScript = (mobileQueries) => {
     return `
     if (typeof window !== 'undefined') {
       const baseFontSize = 16
@@ -2690,14 +2629,24 @@ var getResponsiveScript = () => {
       const addVirtualRemQueries = function() {
         const style = document.createElement('style')
         style.setAttribute('type', 'text/css')
-        style.setAttribute('data-magic-responsive', 'true')
+        style.setAttribute('data-responsive-app', 'true')
         style.textContent = \"${queries.replace(/\n/g, '')}\"
+        document.head.appendChild(style)
+      }
+
+      const addMobileCentralization = function() {
+        if ('${mobileQueries}' === 'null') return
+        const style = document.createElement('style')
+        style.setAttribute('type', 'text/css')
+        style.setAttribute('data-responsive-app-mobile', 'true')
+        style.textContent = \"${mobileQueries.replace(/\n/g, '')}\"
         document.head.appendChild(style)
       }
 
       const initResponsive = function() {
         window.addEventListener('resize', updateHtmlFontSize)
         addVirtualRemQueries()
+        addMobileCentralization()
         updateHtmlFontSize()
       }
 
@@ -2711,15 +2660,30 @@ var getResponsiveScript = () => {
     }`;
 };
 
-var handleJs = (code, id) => {
+function getMobileQueries(options) {
+    if (!options.handleMobile)
+        return null;
+    const params = {
+        ...handleMobileDefaults,
+        ...(typeof options.handleMobile === 'object' ? options.handleMobile : {})
+    };
+    let queries = `@media (orientation: portrait) and (max-width: ${params.breakpoint}) {`;
+    params.centralizeText.forEach(function (selector) {
+        queries += `${selector}:not(.${ignoreResponsiveAppClass}) { text-align: center }`;
+    });
+    queries += '}';
+    return queries;
+}
+var handleJs = (options, code, id) => {
     const magicString = new MagicString(code);
     const isHtmlFile = id.includes(indexHtmlFile);
+    const mobileQueries = getMobileQueries(options);
     if (isHtmlFile) {
         const index = code.indexOf('</body>');
-        magicString.prependLeft(index, `<script>${getResponsiveScript()}</script>`);
+        magicString.prependLeft(index, `<script>${getResponsiveScript(mobileQueries)}</script>`);
     }
     else {
-        magicString.append(`\n\n(function() {\n${getResponsiveScript()}\n}())`);
+        magicString.append(`\n\n(function() {\n${getResponsiveScript(mobileQueries)}\n}())`);
     }
     return {
         code: magicString.toString(),
@@ -2732,6 +2696,7 @@ var handleJs = (code, id) => {
 };
 
 let hasAddedScript = false;
+const transformedCssFiles = new Set();
 function index (data) {
     const options = {
         ...optionDefaults,
@@ -2742,28 +2707,30 @@ function index (data) {
         transform: {
             order: 'post',
             handler(code, id) {
-                if ((options.handleMobile || options.transformPixels) && id.includes('.css')) {
+                if ((options.handleMobile || options.transformPixels) && id.includes('.css') && !transformedCssFiles.has(id)) {
+                    transformedCssFiles.add(id);
                     return handleCss(options, code, id);
                 }
                 const isOptionEntryPoint = options.appEntry && id.includes(options.appEntry);
                 const isDefaultEntryPoint = !options.appEntry && appEntryPoints.some(i => id.includes(i)) && !id.includes('/server');
                 if (!hasAddedScript && (isOptionEntryPoint || isDefaultEntryPoint)) {
                     hasAddedScript = true;
-                    return handleJs(code, id);
+                    return handleJs(options, code, id);
                 }
                 return null;
             },
         },
         async generateBundle(bundleOptions, bundle) {
             const cssFilter = createFilter('**/*.css');
-            for (const fileName of Object.keys(bundle)) {
-                if (cssFilter(fileName)) {
-                    const cssAsset = bundle[fileName];
-                    if (cssAsset && cssAsset.type === 'asset') {
+            for (const id of Object.keys(bundle)) {
+                if (cssFilter(id)) {
+                    const cssAsset = bundle[id];
+                    if (cssAsset && cssAsset.type === 'asset' && !transformedCssFiles.has(id)) {
                         const cssBuffer = cssAsset.source;
                         const cssContent = typeof cssBuffer === 'string' ? cssBuffer : (Buffer.from(cssBuffer)).toString();
-                        const transformedCSS = handleCss(options, cssContent, fileName);
+                        const transformedCSS = handleCss(options, cssContent, id);
                         if (transformedCSS) {
+                            transformedCssFiles.add(id);
                             cssAsset.source = transformedCSS.code;
                         }
                     }
