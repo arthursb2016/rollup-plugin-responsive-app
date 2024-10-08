@@ -13,7 +13,7 @@ The plugin will make sure the app proportions are the same across all screen res
 
 ## Install
 
-```
+```javascript
 npm i -D rollup-plugin-responsive-app
 ```
 
@@ -21,7 +21,7 @@ npm i -D rollup-plugin-responsive-app
 
 In your `rollup.config.js` or `vite.config.js` file:
 
-```
+```javascript
 import responsive from 'rollup-plugin-responsive-app'
 
 export default {
@@ -64,7 +64,7 @@ You can pass an object with options to `responsive({...})`:
 
 You can also add the `ignore-responsive-app` class to any HTML element so the above transformations do not have effect. Example:
 
-```
+```HTML
 <div class="width-300px ignore-responsive-app">
   My width will remain in pixels!
 </div>
