@@ -21,25 +21,25 @@ function transformPixels(code: string, options: TransformPixelsOptions) {
   const cssMap = new Map()
   let match
 
-  while ((match = cssSelectorRegExp.exec(code)) !== null) {
+  const curatedCode = code.replace(/\\n/g, '')
+  while ((match = cssSelectorRegExp.exec(curatedCode)) !== null) {
     const selector = match[1].trim()
-    const properties = match[2].trim()
+    const propValue = match[2].trim()
 
     if (options.ignoreSelectors.some(i => selector.includes(i))) {
       continue
     }
 
-    const pxProperties = []
-    let propMatch
-
-    while ((propMatch = propRegex.exec(properties)) !== null) {
-      const key = propMatch[1].trim()
-      const value = propMatch[2].trim()
-
-      if (value.includes('px') && !options.ignoreAttributes.includes(key)) {
+    const pxProperties: { key: string, value: string }[] = []
+    const properties = propValue.split(';')
+    properties.forEach((property) => {
+      const arr = property.split(':')
+      const key = arr[0].trim()
+      const value = (arr[1] || '').trim()
+      if (value && value.includes('px') && !options.ignoreAttributes.includes(key)) {
         pxProperties.push({ key, value })
       }
-    }
+    })
 
     if (pxProperties.length > 0) {
       cssMap.set(selector, pxProperties)
@@ -53,7 +53,7 @@ function transformPixels(code: string, options: TransformPixelsOptions) {
       transformationDefinitions += `${key}:not(.${ignoreResponsiveAppClass}){`
       properties.forEach((prop: { key: string, value: string }, index: number) => {
         const isLast = index === properties.length - 1
-        transformationDefinitions += `${prop.key}:${getPropertyRemValue(prop.value)}${isLast ? '' : ''}`
+        transformationDefinitions += `${prop.key}:${getPropertyRemValue(prop.value)}${isLast ? '' : ';'}`
       })
       transformationDefinitions += '}'
     })

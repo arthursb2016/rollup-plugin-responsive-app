@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var require$$0 = require('path');
 var MagicString = require('magic-string');
 
@@ -2224,7 +2222,6 @@ const indexHtmlFile = '/index.html';
 const appEntryPoints = [indexHtmlFile, '/app.js', '/main.js', 'src/index.js'];
 
 const cssSelectorRegExp = /([.#\w\-\s,:]+)\s*\{([^}]+?)\}/gs;
-const propRegex = /([\w-]+)\s*:\s*([^}]+)/g;
 function getRemValue(value) {
     return (value / htmlTagBaseFontSize).toFixed(4).replace(/[.,]0+$/, "");
 }
@@ -2236,21 +2233,23 @@ function getPropertyRemValue(value) {
 function transformPixels(code, options) {
     const cssMap = new Map();
     let match;
-    while ((match = cssSelectorRegExp.exec(code)) !== null) {
+    const curatedCode = code.replace(/\\n/g, '');
+    while ((match = cssSelectorRegExp.exec(curatedCode)) !== null) {
         const selector = match[1].trim();
-        const properties = match[2].trim();
+        const propValue = match[2].trim();
         if (options.ignoreSelectors.some(i => selector.includes(i))) {
             continue;
         }
         const pxProperties = [];
-        let propMatch;
-        while ((propMatch = propRegex.exec(properties)) !== null) {
-            const key = propMatch[1].trim();
-            const value = propMatch[2].trim();
-            if (value.includes('px') && !options.ignoreAttributes.includes(key)) {
+        const properties = propValue.split(';');
+        properties.forEach((property) => {
+            const arr = property.split(';');
+            const key = arr[0];
+            const value = arr[1];
+            if (value && value.includes('px') && !options.ignoreAttributes.includes(key)) {
                 pxProperties.push({ key, value });
             }
-        }
+        });
         if (pxProperties.length > 0) {
             cssMap.set(selector, pxProperties);
         }
@@ -2749,5 +2748,4 @@ function index (data) {
     };
 }
 
-exports.default = index;
-//# sourceMappingURL=index.cjs.js.map
+module.exports = index;
