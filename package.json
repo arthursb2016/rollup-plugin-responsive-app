@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-responsive-app",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.0",
   "description": "A Rollup plugin to handle your app responsiveness automatically",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.mjs",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lnx-tech/rollup-plugin-responsive-app"
+    "url": "https://github.com/arthursb2016/rollup-plugin-responsive-app"
   },
   "author": "Arthur Borba <artsborba@gmail.com>",
   "license": "MIT",
