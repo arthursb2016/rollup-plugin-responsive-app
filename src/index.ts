@@ -1,13 +1,6 @@
 import { OutputOptions, OutputBundle, Plugin } from 'rollup'
 import { createFilter } from '@rollup/pluginutils'
-import fs from 'fs'
-import path from 'path'
-
-import { Options } from './types'
-import { optionDefaults } from './options'
-import { indexHtmlFile, appEntryPoints } from './constants'
-import handleCss from './cssHandler'
-import handleJs from './jsHandler'
+import { handleCss, handleJs, isDefaultEntryPoint, optionDefaults, Options } from '../core'
 
 let hasAddedScript = false
 const transformedCssFiles = new Set<string>()
@@ -30,9 +23,8 @@ export default function(data?: Options): Plugin {
         }
 
         const isOptionEntryPoint = options.appEntry && id.includes(options.appEntry)
-        const isDefaultEntryPoint = !options.appEntry && appEntryPoints.some(i => id.includes(i)) && !id.includes('/server')
 
-        if (!hasAddedScript && (isOptionEntryPoint || isDefaultEntryPoint)) {
+        if (!hasAddedScript && (isOptionEntryPoint || isDefaultEntryPoint(options, id))) {
           hasAddedScript = true
           return handleJs(options, code, id)
         }
