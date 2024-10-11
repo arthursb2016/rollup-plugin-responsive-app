@@ -72,7 +72,7 @@ export default `
     --v-rem: 18;
  }
 }
-@media (orientation: landscape) and (max-width: 1280px), (orientation: landscape) and (max-height: 720px) {
+@media (orientation: landscape) and (max-width: 1320px), (orientation: landscape) and (max-height: 720px) {
   :root {
     --v-rem: 17;
  }
@@ -82,7 +82,7 @@ export default `
     --v-rem: 16;
  }
 }
-@media (orientation: landscape) and (max-width: 1120px), (orientation: landscape) and (max-height: 630px) {
+@media (orientation: landscape) and (max-width: 1080px), (orientation: landscape) and (max-height: 630px) {
   :root {
     --v-rem: 15;
  }
@@ -92,22 +92,22 @@ export default `
     --v-rem: 14;
  }
 }
-@media (orientation: landscape) and (max-width: 880px), (orientation: landscape) and (max-height: 495px) {
+@media (orientation: landscape) and (max-width: 840px), (orientation: landscape) and (max-height: 495px) {
   :root {
     --v-rem: 13;
  }
 }
-@media (orientation: landscape) and (max-width: 800px), (orientation: landscape) and (max-height: 450px) {
+@media (orientation: landscape) and (max-width: 720px), (orientation: landscape) and (max-height: 450px) {
   :root {
     --v-rem: 12;
  }
 }
-@media (orientation: landscape) and (max-width: 640px), (orientation: landscape) and (max-height: 360px) {
+@media (orientation: landscape) and (max-width: 600px), (orientation: landscape) and (max-height: 360px) {
   :root {
     --v-rem: 11;
  }
 }
-@media (orientation: landscape) and (max-width: 560px), (orientation: landscape) and (max-height: 315px) {
+@media (orientation: landscape) and (max-width: 480px), (orientation: landscape) and (max-height: 315px) {
   :root {
     --v-rem: 10;
  }
@@ -117,7 +117,7 @@ export default `
     --v-rem: 9;
  }
 }
-@media (orientation: landscape) and (max-width: 320px), (orientation: landscape) and (max-height: 180px) {
+@media (orientation: landscape) and (max-width: 360px), (orientation: landscape) and (max-height: 180px) {
   :root {
     --v-rem: 8;
  }
@@ -127,7 +127,7 @@ export default `
     --v-rem: 7;
  }
 }
-@media (orientation: landscape) and (max-width: 160px), (orientation: landscape) and (max-height: 90px) {
+@media (orientation: landscape) and (max-width: 120px), (orientation: landscape) and (max-height: 90px) {
   :root {
     --v-rem: 6;
  }
@@ -202,7 +202,7 @@ export default `
     --v-rem: 18;
  }
 }
-@media (orientation: portrait) and (max-width: 720px), (orientation: portrait) and (max-height: 1280px) {
+@media (orientation: portrait) and (max-width: 740px), (orientation: portrait) and (max-height: 1280px) {
   :root {
     --v-rem: 17;
  }
