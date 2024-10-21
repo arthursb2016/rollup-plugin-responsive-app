@@ -1,6 +1,6 @@
 import { OutputOptions, OutputBundle, Plugin } from 'rollup'
+import { handleCss, handleJs, isDefaultEntryPoint, optionDefaults, Options } from 'responsive-app'
 import { createFilter } from '@rollup/pluginutils'
-import { handleCss, handleJs, isDefaultEntryPoint, optionDefaults, Options } from '../core'
 
 let hasAddedScript = false
 const transformedCssFiles = new Set<string>()
