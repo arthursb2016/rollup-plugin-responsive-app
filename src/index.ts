@@ -50,12 +50,6 @@ export default function(data?: Options): Plugin {
           }
         }
       }
-    },
-
-    watchChange(id: string) {
-      if (id.endsWith('.css')) {
-        this.addWatchFile(id)
-      }
     }
   }
 }

@@ -15,7 +15,7 @@ export default {
       format: 'cjs'
     }
   ],
-  external: ['magic-string'],
+  external: ['responsive-app'],
   plugins: [
     typescript(),
     resolve(),
