@@ -2,7 +2,6 @@
 A Rollup plugin to automatically handle your app responsiveness:
 
 * Set up and ready
-* Major frontend frameworks compatible
 * Web accessible compliant
 * Mobile screen auto-adaptation [experimental]
 
